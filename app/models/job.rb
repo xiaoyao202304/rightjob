@@ -3,6 +3,10 @@ class Job < ApplicationRecord
   validates :wage_upper_bound, presence: true
   validates :wage_lower_bound, presence: true
   validates :wage_lower_bound, numericality: { greater_than: 0}
+  validates_presence_of :job_type
+
+  JOB_TYPE = %w(Full-time Part-time Freelance Remote Internship Other)
+  validates_inclusion_of :job_type, in: JOB_TYPE
 
   scope :published, -> {where(is_hidden: false)}
   scope :recent, -> {order("created_at DESC")}
