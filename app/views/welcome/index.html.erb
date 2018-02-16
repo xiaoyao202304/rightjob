@@ -2,3 +2,19 @@
   <h1 class="title"> Find the right job.  Right now. </h1>
   <a href='/jobs' class='btn-main'>Get Started</a>
 </div>
+
+<section class="odd">
+  <div>
+    <%= form_tag search_jobs_path , :method => :get, :class => "jobs-search-form" do %>
+      <div class="input-group col-sm-offset-2 col-sm-8">
+        <input type="text" class="form-control" name="q" value="<%= params[:q] %>" placeholder="搜索工作关键字...">
+
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</section>
