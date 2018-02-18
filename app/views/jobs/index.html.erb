@@ -1,0 +1,46 @@
+<div class="col-md-10 col-centered" id="joblist1">
+  <ul class="nav nav-tabs">
+    <li class="<%= 'active' if !params[:order] %>">
+      <%= link_to("按发布时间排序", jobs_path) %>
+    </li>
+    <li class="<%= 'active' if params[:order] == 'by_lower_bound' %>">
+      <%= link_to("按工资下限排序", jobs_path(:order => "by_lower_bound")) %>
+    </li>
+    <li class="<%= 'active' if params[:order] == 'by_upper_bound' %>">
+      <%= link_to("按工资上限排序", jobs_path(:order => "by_upper_bound")) %>
+    </li>
+  </ul>
+
+  <table class="table table-striped custab" id="t1">
+    <thead>
+      <tr class="info">
+        <th>职位名称</th>
+        <th>工作性质</th>
+        <th>工资</th>
+        <th>公司</th>
+        <th>地点</th>
+        <!-- <th>薪资下限</th>
+        <th>薪资上限</th> -->
+        <th>发布时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+      <tr>
+        <td><%= link_to(job.title, job_path(job)) %></td>
+        <td><%= job.job_type %></td>
+        <td><%= job.wage_lower_bound %>k ~ <%= job.wage_upper_bound %>k</td>
+        <td><%= job.company %></td>
+        <td><%= job.location %></td>
+        <td><%= job.created_at.to_date %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+  <div class="text-center">
+    <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+  </div>
+
+</div>

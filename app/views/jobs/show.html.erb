@@ -1,0 +1,14 @@
+
+<div class="col-md-10 col-centered">
+  <h3><%= @job.title %></h3>
+  <p class="date">
+    发布时间:<%= @job.created_at.to_date %>
+  </p>
+
+
+  <%= render :partial => "job", :object => @job %>
+
+  <div class="text-center">
+    <%= link_to("投简历", new_job_resume_path(@job), :class => "btn btn-danger btn-lg") %>
+  </div>
+</div>
